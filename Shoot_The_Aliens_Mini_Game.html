@@ -1,0 +1,125 @@
+<html>
+    <style>
+        body
+        {
+            background-color: black;
+            margin: 0px auto;
+            text-align: center;
+            margin-top: 50px;
+            color: rgb(255, 145, 0);
+        }
+        #welcomingScreen
+        {
+            margin: 0px auto;
+            text-align: center;
+            margin-top: 50px;
+            color: rgb(255, 145, 0);
+        }
+
+        .buttons
+        {
+            background-color: rgb(231, 135, 24); 
+            width: 200px; 
+            height: 50px; 
+            font-size: large;
+        }
+    </style>
+    <script>
+        function play()
+        {
+            var score = 0;
+            document.getElementById("Shoot").style.display = "none";
+            document.getElementById("Welcome").style.display = "none";
+            document.getElementById("Intro").style.display = "none";
+            document.getElementById("Play").style.display = "none";
+
+            var p1 = document.createElement('p');
+            p1.innerHTML = 'Shoot as many spaceships as you can in 10 seconds!';
+            p1.style.fontSize = '25px';
+            p1.id = "p1";
+            document.body.appendChild(p1);
+
+            var scoreT = document.createElement('p');
+            scoreT.innerHTML = 'Score: ' + score;
+            scoreT.id = "score";
+            scoreT.style.fontSize = '20px';
+            document.body.appendChild(scoreT);
+
+            for(var i=0; i < 60; ++i)
+            {
+                var spaceshipIm = document.createElement('img');
+                spaceshipIm.src = 'images/spaceship.png';
+                spaceshipIm.id = "spaceship";
+                spaceshipIm.style.position = "relative";
+                spaceshipIm.style.width = 44;
+                spaceshipIm.style.height = 37;
+                spaceshipIm.style.padding = '30px';
+                spaceshipIm.style.top = Math.floor(Math.random() * 60)+'px';
+                spaceshipIm.style.left = Math.floor(Math.random() * 30)+'px';
+                spaceshipIm.style.right = Math.floor(Math.random() * 20)+'px';
+          
+                spaceshipIm.onclick = function destroyEnemy()
+                {
+                    document.body.removeChild(this);
+                    ++score;
+                    scoreT.innerHTML = 'Score: '+ score;
+                }
+                document.body.appendChild(spaceshipIm);
+            }
+
+            setTimeout(gameOver,10*1000);
+        }
+
+        function gameOver()
+        {
+            var images = document.getElementsByTagName('img');
+
+            while(images.length > 0)
+            {
+                document.body.removeChild(images[0]);
+            }
+
+            document.body.removeChild(document.getElementById("p1"));
+
+            document.getElementById("endGame").style.display = '';
+            document.getElementById("exit").style.display = '';
+            document.getElementById("PA").style.display = '';
+        }
+
+        function reload()
+        {
+            document.getElementById("endGame").style.display = 'none';
+            document.getElementById("exit").style.display = 'none';
+            document.getElementById("PA").style.display = 'none';
+            document.body.removeChild(document.getElementById("score"));
+            play();
+        }
+
+        function exit()
+        {
+            document.body.removeChild(document.getElementById("score"));
+
+            document.getElementById("endGame").style.display = 'none';
+            document.getElementById("exit").style.display = 'none';
+            document.getElementById("PA").style.display = 'none';
+
+            document.getElementById("Shoot").style.display = "";
+            document.getElementById("Welcome").style.display = "";
+            document.getElementById("Intro").style.display = "";
+            document.getElementById("Play").style.display = "";
+        }
+    </script>
+
+    <body id="body">
+        <h1 style="font-size: 100px;" id="Shoot">Shoot the Aliens</h1>
+        <h1 id="Welcome">Welcome</h1>
+        <h2 id="Intro">Press the button to start Playing!</h2>
+        <br>
+        <button id="Play" class="buttons" onclick="play()" >Battle</button>
+
+        <h1 id="endGame" style="display: none;">Press any button according to your wishes</h1>
+        <span>
+            <button id="exit" class="buttons" style="display: none;" onclick="exit()">Exit</button> <button id="PA" class="buttons" style="display: none;" onclick="reload()">Play Again</button>
+        </span>
+    </body>
+</html>

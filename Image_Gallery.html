@@ -1,0 +1,80 @@
+<html>
+    <style>
+        #imagesTable
+        {
+            margin: 0px auto;
+            background-color: rgb(245, 227, 188);
+            margin-top: 50px;
+        }
+    </style>
+    <script>
+        var current = 0;
+        var imagesArray = [
+            "images/koules1.jpg",
+            "images/koules2.jpg",
+            "images/koules3.jpg",
+        ]
+
+        function previousImage()
+        {
+            if(current == 0)
+            {
+                current = imagesArray.length-1;
+            }
+            else
+            {
+                --current;
+            }
+
+            update();
+        }
+
+        function nextImage()
+        {
+            if(current == imagesArray.length-1)
+            {
+                    current = 0;
+            }
+            else
+            {
+                    ++current;
+            }
+
+            update();            
+        }
+
+        function initialize()
+        {
+            update();
+            document.getElementById("total").innerHTML = imagesArray.length;
+        }
+
+        function update()
+        {
+            document.getElementById("images").src = imagesArray[current];
+            document.getElementById("current").innerHTML = current+1;
+        }
+    </script>
+
+    <body onload="initialize()">
+        <table id="imagesTable">
+            <tr>
+                <td></td>
+                <td><h1 style="text-align:center">Image gallery</h1></td>
+                <td></td>
+            </tr>
+            
+            <tr>
+                <td><img src="images/left.png" onclick="previousImage()"/></td>
+                <td><img id="images" width="600px" height="400px" style="margin-bottom: 20px;" src=""/></td>
+                <td><img src="images/right.png" onclick="nextImage()"/></td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td style="text-align: center;">Images <span id="current">-</span> / <span id="total">-</span></td>
+                <td></td>
+            </tr>
+        </table>
+    </body>
+</html>

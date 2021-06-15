@@ -1,0 +1,58 @@
+<html>
+    <style>
+        body
+        {
+            background-color: rgb(114, 182, 214);
+        }
+    </style>
+
+    <script>
+        function validateForm()
+        {
+            if(document.forms["PersonalInfo"]["Name"].value == "")
+            {
+                alert("Empty name!");
+                return false;
+            }
+
+            if(document.forms["PersonalInfo"]["message"].value == "")
+            {
+                alert("Empty message!");
+                return false;
+            }
+
+            if(document.forms["PersonalInfo"]["Phone"].value == "" && document.forms["PersonalInfo"]["Email"].value == "")
+            {
+                alert("There is no contact info!");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+
+    <body>
+        <h1>Επικοινωνία</h1>
+
+        <form name="PersonalInfo" onsubmit="return validateForm()">
+            Όνομα:
+            <br>
+            <input type="text" name="Name"/>
+            <br>
+            Email:
+            <br>
+            <input type="text" name="Email"/>
+            <br>
+            Τηλέφωνο:
+            <br>
+            <input type="text" name="Phone"/>
+            <br>
+            Το μήνυμα σας:
+            <br>
+            <textarea name="message" rows="5" cols="20"></textarea>
+            <br>
+            <br>
+            <input type="submit" value="Αποστολή"/>
+        </form>
+    </body>
+</html>

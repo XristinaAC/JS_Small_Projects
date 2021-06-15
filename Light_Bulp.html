@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Example _Javascript+0</title>
+
+    <script>
+      //console output example
+      function Point(x,y)
+      {
+        this.x = x;
+        this.y = y;
+        this.move = function(dx,dy) { this.x += dx; this.y += dy;}
+      }
+
+      var point = new Point(10,20);
+      point.move(10,90);
+      for(x in point) console.log(x);
+
+      //broser output Example
+      function makeParagraphsRed()
+      {
+        var paragraphs = document.getElementsByTagName('p');
+        for(var i = 0 ; i < paragraphs.length ; i++){
+          paragraphs[i].style.color = 'red';
+        }
+      }
+
+      function createDynamicContent()
+      {
+        var paragraph = document.createElement('p');
+        var element = document.createElement('h1');
+        element.innerHTML = 'Dynamic Content!';
+        element.onmouseover = function () { console.log(this.textContent); }
+        paragraph.appendChild(element);
+        document.body.appendChild(paragraph);
+      }
+    </script>
+  </head>
+  <body onload= "createDynamicContent();">
+    <button onclick="document.getElementById('LightBulb').style.display='none';">Hide</button>
+    <button onclick="document.getElementById('LightBulb').src='LigB1.jpg';">Σβήσε</button>
+    <img id = "LightBulb" src = "LigB1.gif">
+    <button onclick="document.getElementById('LightBulb').style.display='inline';">Show</button>
+    <button onclick="document.getElementById('LightBulb').src='LigB1.gif';">Άναψε</button>
+    <button onclick="alert('Press the buttons to change the lights!');">Info</button>
+    <br/><br/>
+    <button onclick="makeParagraphsRed();">Change the paragraphs style.</button>
+    <p>We have a bulb that can turn on and off.</p>
+    <p>Just press the right buttons.</p>
+  </body>
+</html>
